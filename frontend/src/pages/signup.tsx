@@ -4,13 +4,13 @@ import { Quote } from "../components/quote";
 export const SignUp = () => {
   return (
     <>
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-1 lg:grid-cols-2">
         <div>
-          <Auth/>
+          <Auth type="signup"/>
         </div>
         {/* Due to Mobile First Approach, it is invisible for small screen
         and becomes visible when screen size goes past large */}
-        <div className="invisible lg:visible">
+        <div className="hidden lg:block">
         <Quote />
         </div> 
       </div>

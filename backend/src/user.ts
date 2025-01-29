@@ -34,17 +34,20 @@ userRouter.post("/signup", async (c) => {
         data: {
           email: body.email,
           password: body.password,
+          name: body.name
         },
       });
       // generate jwt token for that user
       const token = await sign({ id: user.id }, c.env.JWT_KEY);
       // return the token as josn
-      return c.json({ token });
+      return c.text( token );
     } catch (error) {
+      console.log(error);
       c.status(400);
       return c.json({ message: error });
     }
   });
+
   userRouter.post("/signin", async  (c) => {
     //Generate PrismaClient to interact with User
     const prisma = new PrismaClient({
@@ -58,14 +61,22 @@ userRouter.post("/signup", async (c) => {
       c.status(403)
       return c.json("Incorrect Inputs");
     }
+    try {
+      const user = await  prisma.user.findFirst({where:{
+        email:body.email,
+        password: body.password
+      }})
   
-    const user = await  prisma.user.findUnique({where:{
-      email:body.email
-    }})
-    if(!user){
-      return c.json({message: "not Found"});
+      if(!user){
+        return c.json({message: "not Found"});
+      }
+  
+    
+      const jwt = await sign({id:user.id},c.env.JWT_KEY)
+      return c.text(jwt);
+    } catch (error) {
+      console.log(error);
+      c.status(411)
+      return c.text('invalid');
     }
-  
-    const jwt = await sign({id:user.id},c.env.JWT_KEY)
-    return c.json({jwt});
   });

@@ -1,13 +1,13 @@
 // Type for signupInput
 export type SignupInput = {
-    username: string; // Must be a valid email address
+    email: string; // Must be a valid email address
     password: string; // Must have a minimum length of 6
     name?: string;    // Optional string
   };
   
   // Type for signinInput
   export type SigninInput = {
-    username: string; // Must be a valid email address
+    email: string; // Must be a valid email address
     password: string; // Must have a minimum length of 6
   };
   
@@ -21,6 +21,6 @@ export type SignupInput = {
   export type UpdateBlog = {
     title: string;   // Required string
     content: string; // Required string
-    id: string;      // Required string
+    id?: string;      // Required string
   };
   
