@@ -5,7 +5,6 @@ import { Avatar } from "./BlogCard";
 export const BlogData = ({ blog }: { blog: Blog }) => {
   return (
     <div className="">
-     
       <div className="flex justify-center pt-12">
         <div className="grid grid-cols-12 px-10 w-full max-w-screen-xl ">
           <div className="col-span-8">

@@ -2,7 +2,7 @@ import { useState } from 'react'
 //import reactLogo from './assets/react.svg'
 //import viteLogo from '/vite.svg'
 import './App.css'
-import { BrowserRouter, Route,  Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route,  Routes } from 'react-router-dom';
 import { Blog } from './pages/blog.tsx';
 import { SignIn } from './pages/signin.tsx';
 import { SignUp } from './pages/signup.tsx';
@@ -14,8 +14,9 @@ function App() {
 
   return (
     <>
-         <BrowserRouter>
+      <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Navigate to="/signin" replace />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/blog/:id" element={<Blog />} />

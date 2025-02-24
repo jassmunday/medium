@@ -22,5 +22,6 @@ export type SignupInput = {
     title: string;   // Required string
     content: string; // Required string
     id?: string;      // Required string
+    AuthorId?: string;      // Required string
   };
   

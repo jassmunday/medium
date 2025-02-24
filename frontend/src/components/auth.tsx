@@ -20,10 +20,12 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
         `${BACKEND_URL}/api/v1/user/${type === "signup" ? "signup" : "signin"}`,
         postInput
       );
-      const jwt = response.data;
+      const jwt = response.data.token;
       console.log("Token Test "+jwt);
       localStorage.setItem("token", jwt);
-      navigate("/blogs");
+      if(jwt){
+        navigate("/blogs");
+      }
     } catch (error) {
       alert("Error while Signin" + error);
     }

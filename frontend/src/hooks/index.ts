@@ -8,7 +8,8 @@ export interface Blog{
   content: string,
   author: {
     name:string;
-  }
+  },
+  authorId?:string,
   published?: string
 }
 
